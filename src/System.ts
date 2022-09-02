@@ -1,6 +1,6 @@
 // import statements for hardware
 import {Cpu} from "./hardware/Cpu";
-
+import{Hardware} from "./hardware/Hardware";
 
 /*
     Constants
@@ -14,7 +14,7 @@ const CLOCK_INTERVAL= 500;               // This is in ms (milliseconds) so 1000
                                         // make it larger.
 
 
-export class System {
+export class System extends Hardware{
 
     private _CPU : Cpu = null;
     
@@ -22,6 +22,7 @@ export class System {
 
     constructor() {
         
+        super(2, "System");
         console.log("Hello TSIRAM!");
 
 
