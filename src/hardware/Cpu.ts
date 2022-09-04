@@ -4,7 +4,6 @@ import {Hardware} from "./Hardware";
 export class Cpu extends Hardware{
 
     constructor() {
-        super(1, "Cpu");
-        this.log("hello");
+        super(0, "Cpu");
     }
 }

@@ -20,9 +20,11 @@ export class Hardware {
           
         // Usage example:
           
-        const time: number = getCurrentTime();
+        if(this.debug == true) {
+            const time: number = getCurrentTime();
     
-        console.log("[HW - " + this.name + " id: " + this.id + " - " + time + "]: " + string + "");
+            console.log("[HW - " + this.name + " id: " + this.id + " - " + time + "]: " + string + "");
+        }
     }
 
 }

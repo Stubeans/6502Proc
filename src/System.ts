@@ -22,7 +22,7 @@ export class System extends Hardware{
 
     constructor() {
         
-        super(2, "System");
+        super(0, "System");
         console.log("Hello TSIRAM!");
 
 
@@ -39,7 +39,9 @@ export class System extends Hardware{
     }
 
     public startSystem(): boolean {
-
+        this._CPU.debug = false;
+        this.log("created");
+        this._CPU.log("created");
         return true;
     }
 
