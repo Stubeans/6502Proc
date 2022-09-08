@@ -1,5 +1,3 @@
-import { time } from "console";
-
 export class Hardware {
 
     id: number;
@@ -11,7 +9,7 @@ export class Hardware {
         this.name = name;
     }
 
-    public log(string) {
+    public log(string: string) {
         const getCurrentTime = (): number => {
             const date = new Date();
             return date.getTime();
