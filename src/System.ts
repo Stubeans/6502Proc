@@ -2,6 +2,7 @@
 import {Cpu} from "./hardware/Cpu";
 import{Hardware} from "./hardware/Hardware";
 import { Memory } from "./hardware/Memory";
+import { Clock } from "./hardware/Clock";
 
 /*
     Constants
@@ -19,6 +20,7 @@ export class System extends Hardware{
 
     private _CPU : Cpu = null;
     private _MEMORY : Memory = null;
+    private _CLOCK : Clock = null;
     
     public running: boolean = false;
 
@@ -29,6 +31,7 @@ export class System extends Hardware{
 
         this._CPU = new Cpu();
         this._MEMORY = new Memory();
+        this._CLOCK = new Clock();
         
         /*
         Start the system (Analogous to pressing the power button and having voltages flow through the components)
@@ -41,11 +44,13 @@ export class System extends Hardware{
     }
 
     public startSystem(): boolean {
-        this._CPU.debug = false;
         this.log("created");
         this._CPU.log("created");
         this._MEMORY.log("created");
         this._MEMORY.displayMemory(0x00, 0x14);
+        this._CLOCK.addListener(this._CPU);
+        this._CLOCK.addListener(this._MEMORY);
+        this._CLOCK.startClock(CLOCK_INTERVAL);
         return true;
     }
 

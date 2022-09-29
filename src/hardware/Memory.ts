@@ -1,9 +1,14 @@
 import { System } from "../System";
 import { Hardware } from "./Hardware";
+import { ClockListener } from "./imp/ClockListener";
 
-export class Memory extends Hardware {
+export class Memory extends Hardware implements ClockListener{
 
     memArr: Array<number>;
+
+public pulse(): void {
+    this.log("received clock pulse");
+}
 
     constructor() {
         super(0, "Memory");
