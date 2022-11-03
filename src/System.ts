@@ -47,6 +47,7 @@ export class System extends Hardware{
         this.log("created");
         this._CPU.log("created");
         this._MEMORY.log("created");
+        this._CLOCK.log("created");
         this._MEMORY.displayMemory(0x00, 0x14);
         this._CLOCK.addListener(this._CPU);
         this._CLOCK.addListener(this._MEMORY);
