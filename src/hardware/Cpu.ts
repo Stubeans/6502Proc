@@ -1,7 +1,6 @@
-import { Console } from "console";
-import { System } from "../System";
 import {Hardware} from "./Hardware";
 import { ClockListener } from "./imp/ClockListener";
+import { MMU } from "./MMU";
 
 export class Cpu extends Hardware implements ClockListener{
 
