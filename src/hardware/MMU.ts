@@ -12,6 +12,17 @@ export class MMU extends Hardware{
     constructor(MEMORY: Memory) {
         super(0, "MMU");
         this._MEMORY = MEMORY;
+        this.writeImm(0x0000, 0xA9);
+        this.writeImm(0x0001, 0x0D);
+        this.writeImm(0x0002, 0xA9);
+        this.writeImm(0x0003, 0x1D);
+        this.writeImm(0x0004, 0xA9);
+        this.writeImm(0x0005, 0x2D);
+        this.writeImm(0x0006, 0xA9);
+        this.writeImm(0x0007, 0x3F);
+        this.writeImm(0x0008, 0xA9);
+        this.writeImm(0x0009, 0xFF);
+        this.writeImm(0x000A, 0x00);
     }
 
     public getLow() {

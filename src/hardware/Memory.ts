@@ -33,6 +33,8 @@ export class Memory extends Hardware implements ClockListener{
     }
 
     public displayMemory(number1: number, number2: number) {
+        this.log("Memory Dump: Debug");
+        this.log("--------------------------------------");
         for(let i = number1; i < (number2 + 1); i++) {
             try {
                 if(this.memArr[i] == null) {
@@ -45,6 +47,8 @@ export class Memory extends Hardware implements ClockListener{
                 this.log("Address : " + this.hexLog(i, 5) + " Contains Value: ERR " + error);
             }
         }
+        this.log("--------------------------------------");
+        this.log("Memory Dump: Complete");
     }
 
     //This method will read memory at the location in the MAR and update the MDR
