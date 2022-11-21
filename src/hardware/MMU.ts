@@ -1,4 +1,4 @@
-import {Hardware} from "./Hardware";
+import { Hardware } from "./Hardware";
 import { Cpu } from "./Cpu";
 import { Memory } from "./Memory";
 
@@ -38,7 +38,7 @@ export class MMU extends Hardware{
     }
 
     public setHigh(num: number) {
-        this.lowOrder = num;
+        this.highOrder = num;
     }
 
     public read() {
