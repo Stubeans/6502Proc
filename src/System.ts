@@ -31,10 +31,10 @@ export class System extends Hardware{
         super(0, "System");
 
 
-        this._CPU = new Cpu();
         this._MEMORY = new Memory();
         this._CLOCK = new Clock();
         this._MMU = new MMU(this._MEMORY);
+        this._CPU = new Cpu(this._MMU);
         
         /*
         Start the system (Analogous to pressing the power button and having voltages flow through the components)

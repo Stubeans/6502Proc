@@ -23,6 +23,7 @@ export class MMU extends Hardware{
         this.writeImm(0x0008, 0xA9);
         this.writeImm(0x0009, 0xFF);
         this.writeImm(0x000A, 0x00);
+
     }
 
     public getLow() {
@@ -43,7 +44,7 @@ export class MMU extends Hardware{
 
     public read() {
         this.add = (this.highOrder * 0x100) + this.lowOrder;
-        this.readImm(this.add);
+        return this.readImm(this.add);
     }
 
     public write(data: number) {

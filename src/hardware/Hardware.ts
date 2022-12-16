@@ -26,22 +26,28 @@ export class Hardware {
     }
 
     public hexLog(number: number, length: number) {
-        let myHex = number.toString(16);
-        myHex = myHex.toUpperCase();
-        if(length > 0) {
-            if (myHex.length < length) {
-                let leadingZeroes = "";
-                for(let i = 0; i < (length - myHex.length); i++) {
-                    leadingZeroes = leadingZeroes + "0";
+        let myHex = null;
+        if(number != null) {
+            myHex = number.toString(16);
+            myHex = myHex.toUpperCase();
+            if(length > 0) {
+                if (myHex.length < length) {
+                    let leadingZeroes = "";
+                    for(let i = 0; i < (length - myHex.length); i++) {
+                        leadingZeroes = leadingZeroes + "0";
+                    }
+                    myHex = "0x" + leadingZeroes + myHex;
+                } else if(myHex.length > length) {
+                    myHex = myHex.substring(0, length);
+                    myHex = "0x" + myHex;
+                } else if(myHex.length == length) {
+                    myHex = "0x" + myHex;
                 }
-                myHex = "0x" + leadingZeroes + myHex;
-            } else if(myHex.length > length) {
-                myHex = myHex.substring(0, length);
-                myHex = "0x" + myHex;
-            } else if(myHex.length == length) {
-                myHex = "0x" + myHex;
             }
+        } else {
+            myHex = "null";
         }
+        
 
         return myHex;
     }
