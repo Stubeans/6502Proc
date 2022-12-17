@@ -52,7 +52,7 @@ export class System extends Hardware{
         this._MEMORY.log("created");
         this._CLOCK.log("created");
         this._MMU.log("created");
-        this._MEMORY.displayMemory(0x00, 0x0F);
+        this._MEMORY.displayMemory(0x00, 0x3F);
         this._CLOCK.addListener(this._CPU);
         this._CLOCK.addListener(this._MEMORY);
         this._CLOCK.startClock(CLOCK_INTERVAL);
