@@ -5,7 +5,9 @@ import { Ascii } from "./Ascii";
 
 export class Cpu extends Hardware implements ClockListener{
 
+    //Toggles the 'CPU' state message
     generalDebug = true;
+    //Toggles the System Call output ( i.e. FF call )
     systemCallDebug = true;
 
     _ASCII: Ascii = new Ascii;
