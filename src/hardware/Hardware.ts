@@ -1,4 +1,4 @@
-export class Hardware {
+export class Hardware{
 
     id: number;
     name: string;

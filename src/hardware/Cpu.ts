@@ -1,9 +1,14 @@
 import {Hardware} from "./Hardware";
 import { ClockListener } from "./imp/ClockListener";
 import { MMU } from "./MMU";
+import { Ascii } from "./Ascii";
 
 export class Cpu extends Hardware implements ClockListener{
 
+    generalDebug = true;
+    systemCallDebug = true;
+
+    _ASCII: Ascii = new Ascii;
     _MMU: MMU = null;
     cpuClockCount: number = 0;
     mode: number = 0;
@@ -20,7 +25,9 @@ export class Cpu extends Hardware implements ClockListener{
 
     public pulse(): void {
         //this.log("received clock pulse - CPU Clock Count: " + this.cpuClockCount);
-        this.log("CPU State | Mode: " + this.mode + " PC: " + this.hexLog(this.programCounter, 4) + " IR: " + this.hexLog(this.instructionRegister, 2) + " Acc: " + this.hexLog(this.accumulator, 2) + " xReg: " + this.hexLog(this.xReg, 2) + " yReg: " + this.hexLog(this.yReg, 2) + " zFlag: " + this.zFlag + " Step: " + this.step);
+        if(this.generalDebug == true) {
+            this.log("CPU State | Mode: " + this.mode + " PC: " + this.hexLog(this.programCounter, 4) + " IR: " + this.hexLog(this.instructionRegister, 2) + " Acc: " + this.hexLog(this.accumulator, 2) + " xReg: " + this.hexLog(this.xReg, 2) + " yReg: " + this.hexLog(this.yReg, 2) + " zFlag: " + this.zFlag + " Step: " + this.step);
+        }
         this.cpuClockCount++;
         if(this.instructionRegister == null) {
             this.fetch();
@@ -130,9 +137,13 @@ export class Cpu extends Hardware implements ClockListener{
             }
         } else if (this.opCode == 0xFF) { //System Call : SYS : FF
             if(this.xReg == 0x01) {
-                process.stdout.write(this.hexLog(this.yReg, 2));
+                if(this.systemCallDebug == true) {
+                    process.stdout.write(this.hexLog(this.yReg, 2) + " ");
+                }
             } else if(this.xReg == 0x02) {
-                //TODO Print the 0x00 terminated string stored at address in the Y register
+                if(this.systemCallDebug == true) {
+                    process.stdout.write(this._ASCII.hex2a(this.yReg) + " ");
+                }
             }
             this.step = 6;
         }
