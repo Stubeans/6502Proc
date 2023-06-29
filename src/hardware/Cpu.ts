@@ -81,7 +81,8 @@ export class Cpu extends Hardware implements ClockListener{
             this.accumulator = this._MMU.read();
             this.step = 6;
         } else if (this.opCode == 0x8D) { //Store the accumulator in memory : STA : 8D 10 00 <- stores acc into mem at add 0x10
-            this.step = 5;
+            this._MMU.write(this.accumulator);
+            this.step = 6;
         } else if (this.opCode == 0x8A) { //Load the accumulator from X register : TXA : 8A
             this.accumulator = this.xReg;
             this.step = 6;
@@ -152,7 +153,7 @@ export class Cpu extends Hardware implements ClockListener{
     }
 
     private writeBack() {
-        if(this.opCode == 0xEE || this.opCode == 0x8D) {
+        if(this.opCode == 0xEE ) {
             this._MMU.write(this.accumulator);
             this.step++;
         }
